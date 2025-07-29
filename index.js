@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const Jimp = require("jimp");
+const { Jimp } = require("jimp");
 const args = require("args");
 const path = require("path");
 const fs = require("fs");
@@ -85,8 +85,8 @@ async function createPNG(size) {
   }
 
   const image = await Jimp.read(input);
-  image.resize(size, size);
-  await image.writeAsync(path.join(PNGoutputDir, fileName));
+  image.resize({ w: size, h: size });
+  await image.write(path.join(PNGoutputDir, fileName));
 
   return "Created " + path.join(PNGoutputDir, fileName);
 }
